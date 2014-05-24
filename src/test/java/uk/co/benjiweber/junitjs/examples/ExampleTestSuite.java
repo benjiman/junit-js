@@ -6,7 +6,7 @@ import uk.co.benjiweber.junitjs.JSRunner;
 import uk.co.benjiweber.junitjs.Tests;
 
 @Tests({
-	"ExampleTestOne.js", 
+ "ExampleTestOne.js",
 	"ExampleTestTwo.js",
 	"TestFileUnderTest.js"
 })
