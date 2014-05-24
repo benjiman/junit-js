@@ -1,4 +1,4 @@
-load("src/test/java/uk/co/benjiweber/junitjs/TestUtils.js");
+load("src/test/resources/TestUtils.js");
 load("src/main/java/uk/co/benjiweber/junitjs/examples/FileUnderTest.js");
 
 var stub = newStub();
