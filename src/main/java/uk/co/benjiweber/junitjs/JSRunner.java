@@ -5,6 +5,7 @@ import static java.util.Arrays.asList;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,6 @@ import org.junit.runner.manipulation.Sorter;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
 
-import uk.co.benjiweber.junitjs.examples.ExampleTestSuite;
-
 public class JSRunner extends Runner implements Filterable, Sortable  {
 	
 	private List<TestClass> tests;
@@ -39,7 +38,7 @@ public class JSRunner extends Runner implements Filterable, Sortable  {
 	
 	@Override
 	public Description getDescription() {
-		Description suite = Description.createSuiteDescription(ExampleTestSuite.class);
+		Description suite = Description.createSuiteDescription(cls);
 		for (TestClass testClass : tests) {
 			List<TestCase> tests = testClass.testCases;
 			Description desc = Description.createTestDescription(testClass.name, testClass.name);
@@ -73,7 +72,7 @@ public class JSRunner extends Runner implements Filterable, Sortable  {
 		
 		try {
 			ScriptEngine engine = getBestJavaScriptEngine();
-			loadTestUtilities(engine);
+			//loadTestUtilities(engine);
 			List<TestClass> testClasses = new ArrayList<TestClass>();
 			for (String name : testNames) {
 				testClasses.add(new TestClass(name, load(engine, name)));
@@ -122,8 +121,9 @@ public class JSRunner extends Runner implements Filterable, Sortable  {
 	
 	@SuppressWarnings("unchecked")
 	private List<TestCase> load(ScriptEngine engine, String name) throws ScriptException, IOException{
-		return (List<TestCase>) engine.eval(IOUtils.toString(cls.getResource(name)));
-	}
+		InputStream s = JSRunner.class.getResourceAsStream("/" + name);
+		return (List<TestCase>) engine.eval(IOUtils.toString(s));
+        }
 
 	public void sort(Sorter sorter) {
 		//

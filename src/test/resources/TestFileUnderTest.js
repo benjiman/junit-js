@@ -1,3 +1,4 @@
+load("src/test/resources/TestUtils.js");
 load("src/main/java/uk/co/benjiweber/junitjs/examples/FileUnderTest.js");
 
 var stub = newStub();
@@ -8,7 +9,7 @@ tests({
 		jsAssert.assertIntegerEquals(4, underTest.returnsFour());
 	},
 
-	
+	/*
 	doesSomethingImportant_ThisTestShouldFail: function() {
 		underTest.doesSomethingImportant();
 		
@@ -17,6 +18,7 @@ tests({
 			args: ['wrong', 'args']
 		});
 	},
+        */
 	doesSomethingImportant_ShouldDoSomethingImportant: function() {
 		underTest.doesSomethingImportant();
 		
