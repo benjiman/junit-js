@@ -10,5 +10,9 @@ public class TestClass {
 		this.testCases = testCases;
 		this.name = name;
 	}
+
+    public String junitName() {
+        return name.replaceAll("(.*)\\.(.*)","$2.$1");
+    }
 	
 }

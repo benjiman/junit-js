@@ -41,10 +41,10 @@ public class JSRunner extends Runner implements Filterable, Sortable  {
 		Description suite = Description.createSuiteDescription(cls);
 		for (TestClass testClass : tests) {
 			List<TestCase> tests = testClass.testCases;
-			Description desc = Description.createTestDescription(testClass.name, testClass.name);
+			Description desc = Description.createTestDescription(testClass.junitName(), testClass.junitName());
 			suite.addChild(desc);
 			for (TestCase test : tests) {
-				Description methodDesc = Description.createTestDescription(testClass.name, test.name);
+				Description methodDesc = Description.createTestDescription(testClass.junitName(), test.name);
 				desc.addChild(methodDesc);
 			}
 		}
@@ -56,7 +56,7 @@ public class JSRunner extends Runner implements Filterable, Sortable  {
 		for (TestClass testClass : tests) {
 			List<TestCase> tests = testClass.testCases;
 			for (TestCase test : tests) {
-				Description desc = Description.createTestDescription(testClass.name, test.name);
+				Description desc = Description.createTestDescription(testClass.junitName(), test.name);
 				notifier.fireTestStarted(desc);
 				try {
 					test.testCase.run();
